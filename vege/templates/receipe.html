@@ -1,0 +1,54 @@
+
+    {% extends "base.html" %}
+
+    {% block content %}
+<h1>Recipe Menu Card</h1>
+
+{% comment %} <p>The formaction attribute specifies the URL of a file that will process the input when the form is submitted.</p> {% endcomment %}
+{% comment %} {{request .user}} {% endcomment %}
+{% comment %} <br>
+{{request.user.first_name}}
+<br> {% endcomment %}
+{% comment %} {{request.user.password}} {% endcomment %}
+<form class="receipe" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="fname" requried >Recipe name:</label>
+    <input type="text" id="fname" requried name="receipname"><br><br>
+    <label for="lname">Recipe:</label>
+    <input type="text" id="lname" requried name="receipdes"><br><br>
+    <label for="file">Upload a file:</label>
+    <input type="file" id="file" name="image"><br><br>
+    <input type="submit" value="add Receipes">
+    {% comment %} <input type="submit" formaction="/action_page2.php" value="Submit as Admin"> {% endcomment %}
+  </form>
+  {% comment %} {{receipes}}
+  <div class="search"> 
+    <label for="fname"> search Recipe name:</label>
+    <input type="text" id="fname" name="search"><br><br>
+  </div>
+  <button type="submit" >Search </button> {% endcomment %}
+  <table >
+    <tr class="table-header">
+      <th>sno</th>
+      <th>Receipes name</th>
+      <th>Receipes Description</th>
+      <th>Receipes image</th>
+      <th>ACTION</th>
+    </tr>
+    {% for receipe in receipes%}
+    <tr class="table-row-hover {% cycle 'table-row-odd' 'table-row-even' %}">
+      <th> {{forloop.counter}}</th>
+      <td>{{receipe.receipname}}</td>
+      <td>{{receipe.receipdes}}</td>
+      <td>
+        <img src="/media/{{receipe.image}}" width=100px alt="Recipe Image"> </td>
+        <td><a href="/delete-receipe/{{receipe.id}}/" class='button'>DELETE</a></td>
+        <td><a href="/update-receipe/{{receipe.id}}/" class='button'>update</a></td>
+
+    </tr>
+    {% endfor %}
+  </table>
+  
+
+ {% comment %} {% endblock %} {% endcomment %}
+ {% endblock %}

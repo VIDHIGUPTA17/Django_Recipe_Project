@@ -1,0 +1,20 @@
+
+    {% extends "base.html" %}
+
+    {% block content %}
+<h1>Update Receipes</h1>
+
+
+<form class="receipe" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="fname">Recipe name:</label>
+    <input type="text" id="fname" name="receipname" value="{{receipes.receipname}}"><br><br>
+    <label for="lname">Recipe:</label>
+    <input type="text" id="lname" name="receipdes" value="{{receipes.receipdes}}"><br><br>
+    <label for="file">Upload a file:</label>
+    <input type="file" id="file" name="image" value="{{receipes.image}}"><br><br>
+    <input type="submit" value="update Receipes">
+    {% comment %} <input type="submit" formaction="/action_page2.php" value="Submit as Admin"> {% endcomment %}
+  </form>
+  {% endblock %}
+
