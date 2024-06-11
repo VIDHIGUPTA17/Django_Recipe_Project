@@ -18,7 +18,7 @@
     <input type="text" id="lname" requried name="receipdes"><br><br>
     <label for="file">Upload a file:</label>
     <input type="file" id="file" name="image"><br><br>
-    <input type="submit" value="add Receipes">
+    <input type="submit" value="Add Recipe">
     {% comment %} <input type="submit" formaction="/action_page2.php" value="Submit as Admin"> {% endcomment %}
   </form>
   {% comment %} {{receipes}}
@@ -30,9 +30,9 @@
   <table >
     <tr class="table-header">
       <th>sno</th>
-      <th>Receipes name</th>
-      <th>Receipes Description</th>
-      <th>Receipes image</th>
+      <th>Recipe name</th>
+      <th>Recipe Description</th>
+      <th>Recipe image</th>
       <th>ACTION</th>
     </tr>
     {% for receipe in receipes%}
@@ -42,8 +42,9 @@
       <td>{{receipe.receipdes}}</td>
       <td>
         <img src="/media/{{receipe.image}}" width=100px alt="Recipe Image"> </td>
-        <td><a href="/delete-receipe/{{receipe.id}}/" class='button'>DELETE</a></td>
-        <td><a href="/update-receipe/{{receipe.id}}/" class='button'>update</a></td>
+        <td><a href="/delete-receipe/{{receipe.id}}/" class='button'>DELETE</a>
+          <a href="/update-receipe/{{receipe.id}}/" class='button'>UPDATE</a>
+        </td>
 
     </tr>
     {% endfor %}
