@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import dj_database_url
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8qgr61xjhfaf&w+x4@(qaec(4zed2zix7xww7tuv)$y1r6%g_m'
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG",cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','recipe-project-l681.onrender.com']
 
 
 # Application definition
@@ -83,7 +84,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-DATABASES["default"]=dj_database_url.parse("postgres://recipe_db_8dsq_user:1lWLDfluVivuyRFo6LP3p48es7TJsIka@dpg-cpjh2g2cn0vc73am0b10-a.oregon-postgres.render.com/recipe_db_8dsq")
+DATABASES["default"]=dj_database_url.parse(config("DATABASE_URL"))
+# postgres://recipe_db_8dsq_user:1lWLDfluVivuyRFo6LP3p48es7TJsIka@dpg-cpjh2g2cn0vc73am0b10-a.oregon-postgres.render.com/recipe_db_8dsq
 
 
 # Password validation
